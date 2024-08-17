@@ -9,6 +9,12 @@
 body {
     font-family: 'Exo', sans-serif;
     overflow-x: hidden;
+    background: #4e54c8;
+    background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
+    background: linear-gradient(to left, #8f94fb, #4e54c8);
+    width: 100%;
+    height: 100%;
+    position: relative;
 }
 
 .card.rank-1 {
@@ -41,16 +47,16 @@ body {
     }
 }
 
-.area {
+/* .container {
     background: #4e54c8;
     background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
     background: linear-gradient(to left, #8f94fb, #4e54c8);
     width: 100%;
     height: 100%;
-    min-height: 100vh;
     position: relative;
     overflow: hidden;
-}
+    
+} */
 
 .context {
     width: 100%;
@@ -81,12 +87,28 @@ body {
     padding: 10px 15px;
     border-radius: 20px;
     cursor: pointer;
+    font-size: 13px;
+    transition: background-color 0.3s ease;
+    margin-top: 15px; /* Tambahkan margin di atas tombol untuk pemisahan */
+}
+
+.join-button {
+    background-color: #4e54c8;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 20px;
+    cursor: pointer;
     font-size: 14px;
     transition: background-color 0.3s ease;
     margin-top: 15px; /* Tambahkan margin di atas tombol untuk pemisahan */
 }
 
 .info-button:hover {
+    background-color: #6b70ff;
+}
+
+.join-button:hover {
     background-color: #6b70ff;
 }
 
@@ -120,6 +142,11 @@ body {
     }
 
     .info-button {
+        font-size: 12px;
+        padding: 8px 12px;
+    }
+
+    .join-button {
         font-size: 12px;
         padding: 8px 12px;
     }
@@ -159,6 +186,10 @@ body {
     margin: 5px;
 }
 
+.card .rank-1{
+    justify-content:center;
+}
+
 
 
 .card.rank-1 {
@@ -181,9 +212,23 @@ body {
     margin: 0 20px;
 }
 
+.rank-1 .rank{
+    margin-top: 100px; /* Sesuaikan dengan jarak yang diinginkan */
+}
+
+.rank-1 .rank,
+.rank-2 .rank,
+.rank-3 .rank{
+    font-size:3em; /* Sesuaikan dengan jarak yang diinginkan */
+}
+
 .rank-2 {
     order: 1;
     margin: 0 20px;
+}
+
+.rank-2 .rank{
+    margin-top: 100px; /* Sesuaikan dengan jarak yang diinginkan */
 }
 
 .rank-3 {
@@ -191,14 +236,103 @@ body {
     margin: 0 20px;
 }
 
+.rank-3 .rank{
+    margin-top: 100px; /* Sesuaikan dengan jarak yang diinginkan */
+}
+
 .rank-1, .rank-2, .rank-3 {
     position: relative;
     transition: transform 0.3s ease, filter 0.3s ease;
 }
 
-.rank-1:hover, .rank-2:hover, .rank-3:hover {
+.rank-1.visible:hover, .rank-2.visible:hover, .rank-3.visible:hover {
     transform: scale(1.05);
     filter: brightness(1.2);
+}
+
+/* Atur tinggi untuk kartu peringkat 1 */
+.rank-1 {
+    height: 50vh; /* Sesuaikan dengan tinggi yang diinginkan */
+}
+
+/* Atur tinggi untuk kartu peringkat 2 */
+.rank-2 {
+    height: 45vh; /* Sesuaikan dengan tinggi yang diinginkan */
+}
+
+/* Atur tinggi untuk kartu peringkat 3 */
+.rank-3 {
+    height: 40vh; /* Sesuaikan dengan tinggi yang diinginkan */
+}
+
+.rank-1, .rank-2, .rank-3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Urutan elemen */
+.rank {
+    order: 1; /* Angka Rank di atas */
+    font-size: 2em; /* Sesuaikan ukuran font */
+    font-weight: bold;
+}
+
+.name {
+    order: 2; /* Nama di tengah */
+    font-size: 1.5em;
+    margin-top: 10px; /* Memberi jarak antara angka dan nama */
+}
+
+.points {
+    order: 3; /* Jumlah Poin di bawah */
+    font-size: 1.2em;
+    margin-top: 5px; /* Memberi jarak antara nama dan poin */
+}
+
+.cymbol_r1{
+    width:90px;
+    height:90px;
+    padding:.5%;
+    margin-bottom:50px;
+    position: absolute;
+    top: -15px; /* Posisi gambar sedikit di atas frame card */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: inherit; /* Warna background sama dengan card */
+    border-radius: 12px; /* Rounded square */
+    padding: 5px; /* Tambahkan padding agar gambar tidak langsung bersentuhan dengan tepi background */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Opsional: menambahkan bayangan untuk efek lebih menarik */
+}
+.cymbol_r2{
+    width:80px;
+    height:80px;
+    padding:.5%;
+    margin-bottom:50px;
+    position: absolute;
+    top: -15px; /* Posisi gambar sedikit di atas frame card */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: inherit; /* Warna background sama dengan card */
+    border-radius: 12px; /* Rounded square */
+    padding: 5px; /* Tambahkan padding agar gambar tidak langsung bersentuhan dengan tepi background */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Opsional: menambahkan bayangan untuk efek lebih menarik */
+}
+.cymbol_r3{
+    width:50px;
+    height:50px;
+    padding:.5%;
+    margin-bottom:50px;
+    position: absolute;
+    top: -15px; /* Posisi gambar sedikit di atas frame card */
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: inherit; /* Warna background sama dengan card */
+    border-radius: 12px; /* Rounded square */
+    padding: 5px; /* Tambahkan padding agar gambar tidak langsung bersentuhan dengan tepi background */
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2); /* Opsional: menambahkan bayangan untuk efek lebih menarik */
 }
 
 .coin-icon {
@@ -241,9 +375,17 @@ body {
     border-radius: 15px;
 }
 
-.card:hover {
-    transform: scale(1.05);
+.card {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
 }
+
+.card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
 .circles {
     position: absolute;
@@ -299,7 +441,7 @@ body {
 
     .rank-1, .rank-2, .rank-3 {
         margin: 0 10px; /* Mengurangi margin untuk memperkecil jarak antara kolom */
-        flex-direction: column-reverse; /* Memindahkan angka rank ke atas nama */
+        flex-direction: column; /* Memindahkan angka rank ke atas nama */
     }
 }
 
@@ -352,5 +494,10 @@ body {
 
     .card .rank, .card .name, .card .points {
         font-size: 12px;
+    }
+    .rank-1 .rank,
+    .rank-2 .rank,
+    .rank-3 .rank{
+        font-size:2em; /* Sesuaikan dengan jarak yang diinginkan */
     }
 }

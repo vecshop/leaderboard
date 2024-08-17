@@ -6,7 +6,6 @@ window.addEventListener('scroll', function() {
     } else {
         title.style.opacity = '1';
     }
-
     
     const tooltipContainer = document.querySelector('.tooltip-container');
     if (scrollY > scrollThreshold) {
@@ -33,8 +32,6 @@ window.addEventListener('scroll', function() {
     });
 });
 
-
-
 fetch('https://script.google.com/macros/s/AKfycbxIBqu5HHfOwbpxF-gXiAL7OH_7uuYPfdEbx3W3p3LLB2vRyETmAakXEa8MsfDR1Jiebw/exec')
   .then(response => response.json())
   .then(data => {
@@ -54,22 +51,45 @@ fetch('https://script.google.com/macros/s/AKfycbxIBqu5HHfOwbpxF-gXiAL7OH_7uuYPfd
               break;
           }
 
-          topThree += `<div class="card ${rankClass}">
-                          <div class="rank">${i + 1}</div>
-                          <div class="name">${data[i].name}</div>
-                          <div class="points">${data[i].points} <img src="img/coinxx.png" alt="Coin" class="coin-icon"></div>
-                       </div>`;
-      }
-      topThree += `</div>`;
-      leaderboard.innerHTML += topThree;
+          // Untuk Rank 1, tambahkan gambar goldrank.png di atas nomor rank
+                topThree += `<div class="card ${rankClass}">`;
+
+                if (i === 0) {
+                    topThree += `<img src="img/goldrank.webp" alt="gold" class="cymbol_r1">`;
+                }
+          if (i === 1) {
+              topThree += `<img src="img/silverrank.webp" alt="silver" class="cymbol_r2">`;
+          }
+          if (i === 2) {
+              topThree += `<img src="img/bronzerank.webp" alt="silver" class="cymbol_r3">`;
+          }
+
+                topThree += `
+                                <div class="rank">${i + 1}</div>
+                                <div class="name">${data[i].name}</div>
+                                <div class="points">${data[i].points} <img src="img/coinxx.webp" alt="Coin" class="coin-icon"></div>
+                             </div>`;
+            }
+
+            topThree += `</div>`;
+            leaderboard.innerHTML += topThree;
 
       for (let i = 3; i < data.length; i++) {
           let card = `<div class="card">
                           <div class="rank">${i + 1}</div>
                           <div class="name">${data[i].name}</div>
-                          <div class="points">${data[i].points} <img src="img/coinxx.png" alt="Coin" class="coin-icon"></div>
+                          <div class="points">${data[i].points} <img src="img/coinxx.webp" alt="Coin" class="coin-icon"></div>
                       </div>`;
           leaderboard.innerHTML += card;
       }
+    
+
+        // Tambahkan kelas visible setelah DOM diperbarui
+        setTimeout(() => {
+            document.querySelectorAll('.card.rank-1, .card.rank-2, .card.rank-3').forEach(card => {
+                card.classList.add('visible');
+            });
+        }, 100); // Delay kecil agar animasi terlihat setelah render
   })
+    
   .catch(error => console.error('Error fetching data:', error));

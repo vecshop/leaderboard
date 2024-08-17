@@ -513,4 +513,7 @@ body {
     .rank-2 {
         height: 35vh; /* Sesuaikan dengan tinggi yang diinginkan */
     }
+    .rank-3 {
+        height: 30vh; /* Sesuaikan dengan tinggi yang diinginkan */
+    }
 }

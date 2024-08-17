@@ -496,8 +496,21 @@ body {
         font-size: 12px;
     }
     .rank-1 .rank,
-    .rank-2 .rank,
+    .rank-2 .rank{
+        font-size:2em; /* Sesuaikan dengan jarak yang diinginkan */
+        margin-top: 70px;
+    }
     .rank-3 .rank{
         font-size:2em; /* Sesuaikan dengan jarak yang diinginkan */
+        margin-top: 60px;
+    }
+    /* Atur tinggi untuk kartu peringkat 1 */
+    .rank-1 {
+        height: 40vh; /* Sesuaikan dengan tinggi yang diinginkan */
+    }
+
+    /* Atur tinggi untuk kartu peringkat 2 */
+    .rank-2 {
+        height: 35vh; /* Sesuaikan dengan tinggi yang diinginkan */
     }
 }

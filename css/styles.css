@@ -9,9 +9,6 @@
 body {
     font-family: 'Exo', sans-serif;
     overflow-x: hidden;
-    background: #4e54c8;
-    background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
-    background: linear-gradient(to left, #8f94fb, #4e54c8);
     width: 100%;
     height: 100%;
     position: relative;
@@ -100,7 +97,8 @@ body {
     transition: opacity 0.3s ease;
 }
 
-.info-button {
+.info-button,
+.join-button {
     background-color: #4e54c8;
     color: white;
     border: none;
@@ -112,23 +110,8 @@ body {
     margin-top: 15px; /* Tambahkan margin di atas tombol untuk pemisahan */
 }
 
-.join-button {
-    background-color: #4e54c8;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s ease;
-    margin-top: 15px; /* Tambahkan margin di atas tombol untuk pemisahan */
-}
-
-.info-button:hover {
-    background-color: #6b70ff;
-}
-
-.join-button:hover {
+.info-button:hover,
+.join-button:hover{
     background-color: #6b70ff;
 }
 
@@ -375,6 +358,87 @@ body {
     }
 }
 
+/* Floating Button Container */
+.floating-buttons {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 999;
+}
+
+/* Floating Button Styles */
+.floating-button {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    background-color: #1d25bf;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease;
+}
+
+/* Media Query for Small Screens */
+@media (max-width: 600px) {
+    .floating-buttons {
+        bottom: 10px;
+        left: 10px;
+    }
+    .floating-button {
+        width: 45px;
+        height: 45px;
+    }
+
+    .floating-button i {
+        font-size: 18px;
+        width: 18px;
+        height: 18px;
+    }
+
+    .floating-button .label {
+        left: 55px;
+        padding: 4px 8px;
+        font-size: 12px;
+    }
+
+    .floating-button:hover .label {
+        transform: translateX(8px) translateY(-50%);
+    }
+}
+
+
+
+.floating-button:hover {
+    background-color: #666eff;
+}
+
+/* Label Styles */
+.floating-button .label {
+    position: absolute;
+    left: 70px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #1d25bf;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    opacity: 0;
+    white-space: nowrap;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.floating-button:hover .label {
+    opacity: 1;
+    transform: translateX(10px) translateY(-50%);
+}
+
 .card .rank {
     font-weight: bold;
     color: #4e54c8;
@@ -407,6 +471,24 @@ body {
 }
 
 
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Behind all other content */
+}
+
+.areaX {
+    background: #4e54c8;
+    background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
+    background: linear-gradient(to left, #8f94fb, #4e54c8);
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
 .circles {
     position: absolute;
     top: 0;
@@ -414,7 +496,6 @@ body {
     width: 100%;
     height: 100%;
     overflow: hidden;
-    z-index: 0;
 }
 
 .circles li {
@@ -462,43 +543,6 @@ body {
     .rank-1, .rank-2, .rank-3 {
         margin: 0 10px; /* Mengurangi margin untuk memperkecil jarak antara kolom */
         flex-direction: column; /* Memindahkan angka rank ke atas nama */
-    }
-}
-
-/* CSS untuk Ikon Home */
-.home-icon {
-    position: fixed;
-    top: 15px;
-    left: 15px;
-    z-index: 999;
-    color: #fff;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 10px;
-    border-radius: 50%;
-    text-decoration: none;
-    transition: background-color 0.3s ease;
-}
-
-.home-icon:hover {
-    background-color: rgba(0, 0, 0, 0.7);
-}
-
-.home-icon i {
-    width: 24px;
-    height: 24px;
-}
-
-/* Responsif untuk layar HP */
-@media (max-width: 768px) {
-    .home-icon {
-        top: 10px;
-        left: 10px;
-        padding: 8px;
-    }
-
-    .home-icon i {
-        width: 20px;
-        height: 20px;
     }
 }
 

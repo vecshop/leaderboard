@@ -54,6 +54,7 @@
         <div class="card-container" id="leaderboard">
             <!-- Data will be displayed here -->
         </div>
+        
     </div>
         <ul class="circles">
             <li></li>
@@ -69,30 +70,14 @@
         </ul>
     </div>
 
-    <script src="js/script.js"></script>
+        <!-- Loading Spinner -->
+        <div id="loadr" class="loadr">
+            <div class="spinner">Loading Leaderboard...</div>
+        </div>
+    
+    <script src="js/script.js" defer></script>
     <script>
         feather.replace();
-    </script>
-    
-
-    <script>
-        fetch('https://script.google.com/macros/s/AKfycbxIBqu5HHfOwbpxF-gXiAL7OH_7uuYPfdEbx3W3p3LLB2vRyETmAakXEa8MsfDR1Jiebw/exec')
-          .then(response => response.json())
-          .then(data => {
-              // Process data and create cards
-              // ...
-
-              // Apply fade-in animation after data is loaded and cards are created
-              const cards = document.querySelectorAll('.card');
-              cards.forEach((card, index) => {
-                  if (index >= 3) { // Rank 4 and onwards
-                      setTimeout(() => {
-                          card.classList.add('fade-in');
-                      }, 100 * (index - 2));
-                  }
-              });
-          })
-          .catch(error => console.error('Error fetching data:', error));
     </script>
 
     </body>

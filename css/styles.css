@@ -17,6 +17,26 @@ body {
     position: relative;
 }
 
+.loadr{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    margin-top: 20%;
+
+}
+
+.loadr .spinner {
+    animation: load 1s infinite linear;
+    color: white;
+}
+
 .card.rank-1 {
     background-color: #FFD700; /* Gold */
     animation: shine 2s infinite linear;
@@ -55,7 +75,7 @@ body {
     height: 100%;
     position: relative;
     overflow: hidden;
-    
+
 } */
 
 .context {
@@ -516,4 +536,22 @@ body {
     .rank-3 {
         height: 30vh; /* Sesuaikan dengan tinggi yang diinginkan */
     }
+
+
+    
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
 }
+
+@keyframes load {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }

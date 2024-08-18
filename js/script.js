@@ -1,3 +1,4 @@
+
 window.addEventListener('scroll', function() {
     const title = document.querySelector('h1');
      const scrollThreshold = 50; // Adjust as needed
@@ -6,7 +7,7 @@ window.addEventListener('scroll', function() {
     } else {
         title.style.opacity = '1';
     }
-    
+
     const tooltipContainer = document.querySelector('.tooltip-container');
     if (scrollY > scrollThreshold) {
         tooltipContainer.style.opacity = '0';
@@ -32,9 +33,19 @@ window.addEventListener('scroll', function() {
     });
 });
 
+      function hideLoadingSpinner() {
+          document.getElementById('loadr').style.display = 'none';
+      }
+
+      function showLoadingSpinner() {
+          document.getElementById('loadr').style.display = 'block';
+      }
+
 fetch('https://script.google.com/macros/s/AKfycbxIBqu5HHfOwbpxF-gXiAL7OH_7uuYPfdEbx3W3p3LLB2vRyETmAakXEa8MsfDR1Jiebw/exec')
   .then(response => response.json())
   .then(data => {
+      showLoadingSpinner();
+      
       data.sort((a, b) => b.points - a.points);
       let leaderboard = document.getElementById('leaderboard');
 
@@ -82,7 +93,8 @@ fetch('https://script.google.com/macros/s/AKfycbxIBqu5HHfOwbpxF-gXiAL7OH_7uuYPfd
                       </div>`;
           leaderboard.innerHTML += card;
       }
-    
+
+        hideLoadingSpinner();
 
         // Tambahkan kelas visible setelah DOM diperbarui
         setTimeout(() => {
@@ -90,6 +102,25 @@ fetch('https://script.google.com/macros/s/AKfycbxIBqu5HHfOwbpxF-gXiAL7OH_7uuYPfd
                 card.classList.add('visible');
             });
         }, 100); // Delay kecil agar animasi terlihat setelah render
+
+            // Process data and create cards
+            // ...
+
+            // Apply fade-in animation after data is loaded and cards are created
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                if (index >= 3) { // Rank 4 and onwards
+                    setTimeout(() => {
+                        card.classList.add('fade-in');
+                    }, 100 * (index - 2));
+                }
+            });
+      
+      
   })
     
-  .catch(error => console.error('Error fetching data:', error));
+
+.catch(error => {
+    console.error('Error fetching data:', error);
+        hideLoadingSpinner(); // Pastikan spinner disembunyikan jika terjadi error
+});

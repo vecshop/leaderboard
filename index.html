@@ -46,6 +46,14 @@
             font-size: 2.5em;
         }
 
+        h2{
+            text-align: center;
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.0em;
+            animation: amx 1.5s infinite;
+        }
+
         /* Leaderboard Table */
         .leaderboard {
             width: 100%;
@@ -200,6 +208,36 @@
             transform: translate(-50%, -50%);
         }
         }
+
+        .input-group {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        #searchInput {
+            width: 97%;
+            border-radius: 20px;
+            padding: 10px;
+            text-decoration: none;
+            background-color: white;
+            border-color: #FFCEFB;
+            border-style: solid;
+        }
+
+        @keyframes amx {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        }
+
             
     </style>
 </head>
@@ -217,6 +255,11 @@
     <!-- Main Container for Leaderboard -->
     <div class="container">
         <h1>Leaderboard Pelanggan</h1>
+        <h2>Kumpulkan 60 point dan dapatkan hadiah pertamamu!🎁</h2>
+        <!-- Search Bar -->
+        <div class="input-group mb-3">
+            <input type="text" id="searchInput" class="form-control" placeholder="Cari nama pelanggan..." onkeyup="searchFunction()">
+        </div>
         <table class="leaderboard">
             <thead>
                 <tr>
@@ -231,6 +274,30 @@
         </table>
     </div>
     <div id="loading-message">Loading Leaderboard...</div>
+
+    <script>
+        function searchFunction() {
+            // Ambil input dari search bar
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toUpperCase();
+            const table = document.querySelector('.leaderboard');
+            const tr = table.getElementsByTagName('tr');
+
+            // Loop melalui semua baris di dalam tabel
+            for (let i = 1; i < tr.length; i++) {
+                const td = tr[i].getElementsByTagName('td')[0]; // Kolom pertama (Nama)
+                if (td) {
+                    const txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = ""; // Tampilkan baris jika ada kecocokan
+                    } else {
+                        tr[i].style.display = "none"; // Sembunyikan baris jika tidak ada kecocokan
+                    }
+                }
+            }
+        }
+    </script>
+
 
     <!-- Feather Icons -->
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
@@ -309,6 +376,7 @@
         // Panggil fungsi untuk mengambil data saat halaman dimuat
         fetchLeaderboardData();
     </script>
+    
     <script>
         // Function to toggle image size on click
         function toggleSize(img) {

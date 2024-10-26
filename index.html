@@ -61,6 +61,16 @@
             animation: pulse 2s infinite;
         }
 
+        /* Header Controls Container */
+        .header-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
         /* Search Input */
         #searchInput {
             width: 93%;
@@ -258,15 +268,38 @@
 
         @media (max-width: 768px) {
             .header-controls {
-                flex-direction: row;
+                flex-direction: column;
+                align-items: stretch;
+                padding: 0 0px;
                 justify-content: center;
-                padding: 0 10px;
             }
 
-            .customer-count, .guide-button {
-                flex: 0 1 auto;
-                min-width: 120px;
-                font-size: 80%;
+            .customer-count, 
+            .guide-button {
+                width: 96%;
+                justify-content: center;
+                text-align: center;
+                padding: 12px 15px;
+                margin: 0px 0;
+            }
+
+            .guide-button i {
+                margin-right: 10px;
+            }
+
+            .customer-count {
+                justify-content: center;
+                margin-right: 0;
+            }
+        }
+
+        /* Additional Mobile Optimization */
+        @media (max-width: 480px) {
+            .customer-count, 
+            .guide-button {
+                font-size: 0.85em;
+                width: 90%;
+              
             }
         }
 
@@ -296,9 +329,6 @@
 
         /* Guide Button */
         .guide-button {
-            position: relative;
-            top: 0;
-            right: 0;
             display: inline-flex;
             align-items: center;
             padding: 8px 15px;
@@ -323,7 +353,7 @@
         }
 
         .guide-button:hover {
-            transform: scale(1.1);
+            transform: scale(1.05);
             background: rgba(255, 255, 255, 0.3);
         }
 
@@ -347,12 +377,89 @@
             width: 100%;
             height: 100%;
             background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(5px);
-            z-index: 9999999;
-            animation: fadeIn 0.3s ease-out;
+            z-index: 9999;
         }
 
-        /* Update these styles in your existing CSS */
+        /* Create a separate blur container */
+        .blur-container {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(8px);
+            z-index: 9998;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .close-button {
+            flex: 1;
+            padding: 14px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .close-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .whatsapp-button {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .whatsapp-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+            text-decoration: none;
+            color: white;
+        }
+
+        .whatsapp-button i {
+            font-size: 1.3em;
+        }
+
+        /* Add responsive styling for mobile */
+        @media (max-width: 480px) {
+            .button-container {
+                flex-direction: row;
+            }
+
+            .whatsapp-button, .close-button {
+                width: 30%;
+                font-size: 80%;
+            }
+        }
+
         .modal-content {
             position: relative;
             background: linear-gradient(135deg, rgba(112, 113, 232, 0.95), rgba(198, 131, 215, 0.95));
@@ -360,13 +467,16 @@
             padding: 25px;
             width: 80%;
             max-width: 500px;
-            max-height: 80vh; /* Limit height to 80% of viewport height */
+            max-height: 80vh;
             border-radius: 20px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
             animation: slideDown 0.3s ease-out;
             display: flex;
             flex-direction: column;
+            gap: 15px;
         }
+
+        
 
         .modal-text {
             color: white;
@@ -419,24 +529,6 @@
             margin: 8px 0;
         }
 
-        .close-button {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            border-radius: 10px;
-            color: white;
-            font-size: 1em;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .close-button:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-        }
-
         @media (max-width: 768px) {
             .modal-content {
                 width: 90%;
@@ -455,34 +547,37 @@
             <i class="bi bi-whatsapp"></i>
         </div>
     </div>
-
-    <div class="container">
-
-        <!-- Add this modal -->
-        <div id="guideModal" class="modal">
-            <div class="modal-content">
-                <h3>Sistem Penilaian</h3>
-                <div class="modal-text">
-                    <!-- Customize your guide text here -->
-                    <p>✨ Setiap lembar print bernilai 1 point (photocopy 0.5 point)</p>
-                    <p>🎯 Kumpulkan point sebanyak-banyaknya</p>
-                    <p>🎁 Dapatkan hadiah di:</p>
-                    <ul>
-                        <li>60 point - Hadiah pertamamu</li>
-                        <li>300 point - Hadiah powerfull</li>
-                        <li>1000 point - Hadiah perfect</li>
-                        <li>4000 point - Hadiah special</li>
-                    </ul>
-
-                    
-                    <p>🔥 <i>Banyak events dan coin booster yang akan mempercepat kamu mendapatkan hadiah di setiap rank-nya</i></p>
-
-                    <p style="font-weight: bold;">PRINT SEKARANG JUGA !</p> 
-                    <a href="https://api.whatsapp.com/send/?phone=6287872499754&text=mau+print&type=phone_number&app_absent=0">Di sini melalui Whatsapp</a>
-                </div>
+    <!-- Add this modal -->
+    <div id="guideModal" class="modal">
+        <div class="modal-content">
+            <h3>Sistem Penilaian</h3>
+            <div class="modal-text">
+                <p>✨ Setiap lembar print bernilai 1 point (photocopy 0.5 point)</p>
+                <p>🎯 Kumpulkan point sebanyak-banyaknya</p>
+                <p>🎁 Dapatkan hadiah di:</p>
+                <ul>
+                    <li>60 point - Hadiah pertamamu</li>
+                    <li>300 point - Hadiah powerfull</li>
+                    <li>1000 point - Hadiah perfect</li>
+                    <li>4000 point - Hadiah special</li>
+                </ul>
+                <p>🔥 <i>Banyak events dan coin booster yang akan mempercepat kamu mendapatkan hadiah di setiap rank-nya</i></p>
+                <p style="font-weight: bold;">PRINT SEKARANG JUGA !</p> 
+            </div>
+            <div class="button-container">
+                <a href="https://api.whatsapp.com/send/?phone=6287872499754&text=mau+print&type=phone_number&app_absent=0" 
+                   class="whatsapp-button">
+                    <i class="bi bi-whatsapp"></i>
+                    Print Sekarang!
+                </a>
                 <button class="close-button">OK</button>
             </div>
         </div>
+    </div>
+    
+    <div class="container">
+
+        <!-- Add this modal -->
         <!-- Replace the existing customer-count and guide-button with this -->
         <div class="header-controls">
             <div class="customer-count">
@@ -525,7 +620,7 @@
             const tr = table.getElementsByTagName('tr');
 
             for (let i = 1; i < tr.length; i++) {
-                const td = tr[i].getElementsByTagName('td')[0];
+                const td = tr[i].getElementsByTagName('td')[1];
                 if (td) {
                     const txtValue = td.textContent || td.innerText;
                     if (txtValue.toUpperCase().indexOf(filter) > -1) {
@@ -664,21 +759,27 @@
             setInterval(fetchLeaderboardData, 300000);
         });
 
-        // Add this to your existing JavaScript
         document.addEventListener('DOMContentLoaded', function() {
             const modal = document.getElementById('guideModal');
             const guideBtn = document.getElementById('guideBtn');
             const closeBtn = document.querySelector('.close-button');
 
+            // Create blur container
+            const blurContainer = document.createElement('div');
+            blurContainer.className = 'blur-container';
+            document.body.appendChild(blurContainer);
+
             // Open modal
             guideBtn.onclick = function() {
                 modal.style.display = "block";
+                blurContainer.style.display = "block";
                 document.body.style.overflow = "hidden"; // Prevent scrolling
             }
 
             // Close modal with button
             closeBtn.onclick = function() {
                 modal.style.display = "none";
+                blurContainer.style.display = "none";
                 document.body.style.overflow = "auto"; // Enable scrolling
             }
 
@@ -686,6 +787,7 @@
             window.onclick = function(event) {
                 if (event.target == modal) {
                     modal.style.display = "none";
+                    blurContainer.style.display = "none";
                     document.body.style.overflow = "auto"; // Enable scrolling
                 }
             }

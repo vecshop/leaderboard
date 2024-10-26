@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html translate="no" lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,6 +27,21 @@
             border-radius: 20px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             animation: fadeIn 0.8s ease-out;
+            position: relative;
+        }
+
+        /* Customer Count Styles */
+        .customer-count {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 15px;
+            border-radius: 12px;
+            font-size: 0.9em;
+            font-weight: 500;
+            color: #FFC7C7;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            margin-right: 10px;
         }
 
         /* Header Styles */
@@ -101,6 +116,42 @@
             color: white;
             border: none;
             text-align: center;
+        }
+
+        /* Crown Image Styles */
+        .crown-symbol {
+            width: 20px;
+            height: 20px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .crown-gold {
+            animation: sparkle 1.5s infinite;
+        }
+
+        .crown-silver {
+            animation: sparkle 2s infinite;
+            width: 18px;
+            height: 18px;
+        }
+
+        .crown-bronze {
+            animation: sparkle 2.5s infinite;
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Ensure the crown column stays narrow */
+        .leaderboard td:first-child {
+            width: 40px;
+            padding: 15px 5px;
+        }
+
+        /* Top Row Highlight */
+        .top-rank {
+            background: linear-gradient(145deg, rgba(255, 215, 0, 0.1), rgba(255, 215, 0, 0.2)) !important;
+            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.1);
         }
 
         /* Floating Button Styles */
@@ -199,12 +250,34 @@
             100% { transform: translateY(0); }
         }
 
+        @keyframes sparkle {
+            0% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.8; transform: scale(1.1); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+
+        @media (max-width: 768px) {
+            .header-controls {
+                flex-direction: row;
+                justify-content: center;
+                padding: 0 10px;
+            }
+
+            .customer-count, .guide-button {
+                flex: 0 1 auto;
+                min-width: 120px;
+                font-size: 80%;
+            }
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .container {
                 padding: 15px;
                 margin: 10px;
             }
+
+    
 
             .floating-button, .floating-buttonwh {
                 width: 50px;
@@ -214,6 +287,161 @@
             .rank-img {
                 width: 30px;
                 height: 30px;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+        }
+
+        /* Guide Button */
+        .guide-button {
+            position: relative;
+            top: 0;
+            right: 0;
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 15px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .guide-button i {
+            font-size: 1.1em;
+            color: #FFC7C7;
+            margin-right: 8px;
+        }
+
+        .guide-button span {
+            color: #FFC7C7;
+            font-size: 0.9em;
+            font-weight: 500;
+        }
+
+        .guide-button:hover {
+            transform: scale(1.1);
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .guide-button:hover::after {
+            content: 'Hint';
+            position: absolute;
+            bottom: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.8em;
+            color: #FFC7C7;
+            white-space: nowrap;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            z-index: 9999999;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        /* Update these styles in your existing CSS */
+        .modal-content {
+            position: relative;
+            background: linear-gradient(135deg, rgba(112, 113, 232, 0.95), rgba(198, 131, 215, 0.95));
+            margin: 50px auto;
+            padding: 25px;
+            width: 80%;
+            max-width: 500px;
+            max-height: 80vh; /* Limit height to 80% of viewport height */
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+            animation: slideDown 0.3s ease-out;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-text {
+            color: white;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            overflow-y: auto; /* Enable vertical scrolling */
+            padding-right: 10px; /* Space for scrollbar */
+            flex: 1; /* Take remaining space */
+        }
+
+        /* Custom scrollbar styling */
+        .modal-text::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .modal-text::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        .modal-text::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 4px;
+        }
+
+        .modal-text::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 90%;
+                margin: 30px auto;
+                max-height: 70vh; /* Slightly smaller on mobile */
+            }
+        }
+
+        .modal h3 {
+            color: #FFC7C7;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+
+        .modal-text ul {
+            padding-left: 20px;
+        }
+
+        .modal-text li {
+            margin: 8px 0;
+        }
+
+        .close-button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .close-button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 90%;
+                margin: 30% auto;
+                padding: 20px;
             }
         }
     </style>
@@ -229,6 +457,43 @@
     </div>
 
     <div class="container">
+
+        <!-- Add this modal -->
+        <div id="guideModal" class="modal">
+            <div class="modal-content">
+                <h3>Sistem Penilaian</h3>
+                <div class="modal-text">
+                    <!-- Customize your guide text here -->
+                    <p>✨ Setiap lembar print bernilai 1 point (photocopy 0.5 point)</p>
+                    <p>🎯 Kumpulkan point sebanyak-banyaknya</p>
+                    <p>🎁 Dapatkan hadiah di:</p>
+                    <ul>
+                        <li>60 point - Hadiah pertamamu</li>
+                        <li>300 point - Hadiah powerfull</li>
+                        <li>1000 point - Hadiah perfect</li>
+                        <li>4000 point - Hadiah special</li>
+                    </ul>
+
+                    
+                    <p>🔥 <i>Banyak events dan coin booster yang akan mempercepat kamu mendapatkan hadiah di setiap rank-nya</i></p>
+
+                    <p style="font-weight: bold;">PRINT SEKARANG JUGA !</p> 
+                    <a href="https://api.whatsapp.com/send/?phone=6287872499754&text=mau+print&type=phone_number&app_absent=0">Di sini melalui Whatsapp</a>
+                </div>
+                <button class="close-button">OK</button>
+            </div>
+        </div>
+        <!-- Replace the existing customer-count and guide-button with this -->
+        <div class="header-controls">
+            <div class="customer-count">
+                <span>Total Pelanggan: <span id="total-customers">0</span></span>
+            </div>
+            <div class="guide-button" id="guideBtn">
+                <i class="bi bi-question-circle"></i>
+                <span>Petunjuk</span>
+            </div>
+        </div>
+
         <h1>Bintang Utama di Dunia Print</h1>
         <h2>Print | Kumpulkan 60 point dan dapatkan hadiah pertamamu!🎁</h2>
         
@@ -237,6 +502,7 @@
         <table class="leaderboard">
             <thead>
                 <tr>
+                    <th width="40"></th> <!-- Empty header for crown column -->
                     <th>Nama</th>
                     <th>Poin</th>
                     <th>Rank</th>
@@ -251,7 +517,6 @@
 
     <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.js"></script>
-
     <script>
         function searchFunction() {
             const input = document.getElementById('searchInput');
@@ -279,7 +544,7 @@
             else if (points >= 1000) {
                 return '<img src="img/goldrank.gif" alt="Gold Rank" class="rank-img"> Gold';
             } 
-            else if (points >= 200) {
+            else if (points >= 300) {
                 return '<img src="img/silverrank.gif" alt="Silver Rank" class="rank-img"> Silver';
             } 
             else if (points >= 60) {
@@ -293,49 +558,136 @@
         async function fetchLeaderboardData() {
             const loadingMessage = document.getElementById('loading-message');
             loadingMessage.style.display = 'block';
-            
+
             try {
                 const response = await fetch("https://script.google.com/macros/s/AKfycbzoGK6bQKJ_ZA_uqvrR1TehlsBkGFLrQnmcow3L-oy6_cgpQ9rHW1w3SJ9vmdrtuC46mQ/exec");
                 const data = await response.json();
                 displayLeaderboard(data);
+                updateCustomerCount(data.length);
             }
             catch (error) {
                 console.error('Error fetching leaderboard data:', error);
+                loadingMessage.textContent = 'Error loading data. Please try again later.';
             }
-            
+
             loadingMessage.style.display = 'none';
+        }
+
+        function updateCustomerCount(count) {
+            const totalCustomers = document.getElementById('total-customers');
+            totalCustomers.textContent = count;
+
+            // Add animation class
+            totalCustomers.classList.add('pulse');
+            setTimeout(() => {
+                totalCustomers.classList.remove('pulse');
+            }, 1000);
         }
 
         function displayLeaderboard(customersData) {
             const leaderboardBody = document.getElementById('leaderboard-body');
             leaderboardBody.innerHTML = '';
-            
+
             customersData.sort((a, b) => b.points - a.points);
 
             customersData.forEach((customer, index) => {
                 const row = document.createElement('tr');
                 row.style.animationDelay = `${index * 0.1}s`;
-                
-                row.innerHTML = `
-                    <td>${customer.name}</td>
-                    <td>${customer.points}</td>
-                    <td>${getRankSymbol(customer.points)}</td>
-                `;
+
+                if (index === 0) {
+                    row.classList.add('top-rank');
+                }
+
+                // Create crown cell
+                const crownCell = document.createElement('td');
+                crownCell.style.width = '40px';
+                if (index === 0) {
+                    crownCell.innerHTML = `<img src="img/20241026_223822.webp" class="crown-symbol crown-gold" alt="gold crown">`;
+                } else if (index === 1) {
+                    crownCell.innerHTML = `<img src="img/20241026_223850.webp" class="crown-symbol crown-silver" alt="silver crown">`;
+                } else if (index === 2) {
+                    crownCell.innerHTML = `<img src="img/20241026_223914.webp" class="crown-symbol crown-bronze" alt="bronze crown">`;
+                }
+
+                // Create name cell (now without crown)
+                const nameCell = document.createElement('td');
+                nameCell.textContent = customer.name;
+
+                // Create points cell
+                const pointsCell = document.createElement('td');
+                pointsCell.textContent = customer.points;
+
+                // Create rank cell
+                const rankCell = document.createElement('td');
+                rankCell.innerHTML = getRankSymbol(customer.points);
+
+                // Append all cells to row
+                row.appendChild(crownCell);
+                row.appendChild(nameCell);
+                row.appendChild(pointsCell);
+                row.appendChild(rankCell);
 
                 leaderboardBody.appendChild(row);
             });
         }
 
-        // Initialize Feather Icons
-        feather.replace();
-
-        // Start fetching data when page loads
-        fetchLeaderboardData();
-
-        // Add click handler for rank images
+        // Event listener for rank image clicks
         document.addEventListener('click', function(e) {
             if (e.target.classList.contains('rank-img')) {
                 e.target.classList.toggle('enlarged');
+            }
+        });
+
+        // Initialize Feather Icons if available
+        if (typeof feather !== 'undefined') {
+            feather.replace();
+        }
+
+        // Add hover effect for crown symbol
+        document.addEventListener('mouseover', function(e) {
+            if (e.target.classList.contains('crown-symbol')) {
+                e.target.style.transform = 'scale(1.2) rotate(10deg)';
+            }
+        });
+
+        document.addEventListener('mouseout', function(e) {
+            if (e.target.classList.contains('crown-symbol')) {
+                e.target.style.transform = 'scale(1) rotate(0deg)';
+            }
+        });
+
+        // Start fetching data when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            fetchLeaderboardData();
+
+            // Refresh data every 5 minutes
+            setInterval(fetchLeaderboardData, 300000);
+        });
+
+        // Add this to your existing JavaScript
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('guideModal');
+            const guideBtn = document.getElementById('guideBtn');
+            const closeBtn = document.querySelector('.close-button');
+
+            // Open modal
+            guideBtn.onclick = function() {
+                modal.style.display = "block";
+                document.body.style.overflow = "hidden"; // Prevent scrolling
+            }
+
+            // Close modal with button
+            closeBtn.onclick = function() {
+                modal.style.display = "none";
+                document.body.style.overflow = "auto"; // Enable scrolling
+            }
+
+            // Close modal when clicking outside
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                    document.body.style.overflow = "auto"; // Enable scrolling
+                }
             }
         });
     </script>

@@ -11,7 +11,7 @@
         body {
             margin: 0;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #ffffff;
+            color: #fff;
             min-height: 100vh;
             padding: 20px;
         }
@@ -22,11 +22,11 @@
             top: 0;
             left: 0;
             right: 0;
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, .08);
             backdrop-filter: blur(15px);
             z-index: 1000;
-            padding: 0.5rem 0;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            padding: .5rem 0;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, .1);
         }
 
         .nav-container {
@@ -41,7 +41,7 @@
         .nav-logo {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: .5rem;
         }
 
         .logo-img {
@@ -54,7 +54,6 @@
             color: #FFC7C7;
             font-size: 1.5rem;
             font-weight: 600;
-            display: inline-block;
         }
 
         .nav-links {
@@ -66,12 +65,12 @@
         .nav-link {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: .5rem;
             color: #FFC7C7;
             text-decoration: none;
-            padding: 0.5rem 1rem;
+            padding: .5rem 1rem;
             border-radius: 12px;
-            transition: all 0.3s ease;
+            transition: all .3s ease;
         }
 
         .nav-link i {
@@ -79,12 +78,12 @@
         }
 
         .nav-link:hover {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, .2);
             transform: translateY(-2px);
         }
 
         .nav-link.active {
-            background: rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, .2);
         }
 
         /* Mobile Responsive Styles */
@@ -102,7 +101,7 @@
             }
 
             .nav-link {
-                padding: 0.5rem;
+                padding: .5rem;
             }
 
             .nav-link i {
@@ -110,7 +109,7 @@
             }
 
             .nav-links {
-                gap: 0.5rem;
+                gap: .5rem;
             }
         }
 
@@ -756,27 +755,27 @@
             0% {
                 transform: rotate(0deg) scale(1) translate(0, 0);
                 border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-                opacity: 0.7;
+                opacity: 0.9;
             }
             25% {
                 transform: rotate(90deg) scale(1.2) translate(50px, 50px);
                 border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%;
-                opacity: 0.6;
+                opacity: 0.9;
             }
             50% {
                 transform: rotate(180deg) scale(1) translate(100px, -50px);
                 border-radius: 50% 50% 50% 50% / 50% 50% 50% 50%;
-                opacity: 0.7;
+                opacity: 0.8;
             }
             75% {
                 transform: rotate(270deg) scale(1.2) translate(-50px, -100px);
                 border-radius: 30% 70% 70% 30% / 70% 30% 30% 70%;
-                opacity: 0.6;
+                opacity: 1;
             }
             100% {
                 transform: rotate(360deg) scale(1) translate(0, 0);
                 border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-                opacity: 0.7;
+                opacity: 0.9;
             }
         }
 
@@ -998,19 +997,77 @@
         function getRankSymbol(points) {
             // Check points and return the corresponding rank symbol and text
             if (points >= 4000) {
-                return '<img src="https://cdn3d.iconscout.com/3d/premium/thumb/rank-mythril-3d-icon-download-in-png-blend-fbx-gltf-file-formats--bronze-medal-award-pack-sign-symbols-icons-9325598.png?f=webp" alt="Platinum Rank" class="rank-img"> Platinum';
+                return `
+                  <div style="text-align: center;">
+                    <img src="https://cdn3d.iconscout.com/3d/premium/thumb/rank-mythril-3d-icon-download-in-png-blend-fbx-gltf-file-formats--bronze-medal-award-pack-sign-symbols-icons-9325598.png?f=webp" alt="Platinum Rank" class="rank-img" loading="lazy">
+                    <div>Platinum ★</div>
+                  </div>`;
             } 
             else if (points >= 1000) {
-                return '<img src="https://cdn3d.iconscout.com/3d/premium/thumb/rank-gold-3d-icon-download-in-png-blend-fbx-gltf-file-formats--bronze-medal-award-winner-pack-sign-symbols-icons-9325601.png" alt="Gold Rank" class="rank-img"> Gold';
+                return `
+                  <div style="text-align: center;">
+                    <img src="https://cdn3d.iconscout.com/3d/premium/thumb/rank-gold-3d-icon-download-in-png-blend-fbx-gltf-file-formats--bronze-medal-award-winner-pack-sign-symbols-icons-9325601.png" alt="Gold Rank" class="rank-img" loading="lazy">
+                    <div>Gold ★</div>
+                  </div>`;
+                
             } 
             else if (points >= 300) {
-                return '<img src="https://cdn3d.iconscout.com/3d/premium/thumb/rank-silver-3d-icon-download-in-png-blend-fbx-gltf-file-formats--bronze-medal-pack-sign-symbols-icons-9325593.png?f=webp" alt="Silver Rank" class="rank-img"> Silver';
+                return `
+                  <div style="text-align: center;">
+                    <img src="https://cdn3d.iconscout.com/3d/premium/thumb/rank-silver-3d-icon-download-in-png-blend-fbx-gltf-file-formats--bronze-medal-pack-sign-symbols-icons-9325593.png?f=webp" alt="Silver Rank" class="rank-img" loading="lazy">
+                    <div>Silver ★</div>
+                  </div>`;
+            } 
+            else if (points >= 250) {
+                return `
+                  <div style="text-align: center;">
+                    <img src="https://cdn3d.iconscout.com/3d/premium/thumb/rank-bronze-3d-icon-download-in-png-blend-fbx-gltf-file-formats--badge-award-medal-achievement-game-pack-entertainment-icons-10163273.png" alt="Silver Rank" class="rank-img" loading="lazy">
+                    <div>Bronze ★★★★★</div>
+                  </div>`;
+            } 
+            else if (points >= 200) {
+                return `
+                  <div style="text-align: center;">
+                    <img src="https://cdn3d.iconscout.com/3d/premium/thumb/rank-bronze-3d-icon-download-in-png-blend-fbx-gltf-file-formats--badge-award-medal-achievement-game-pack-entertainment-icons-10163272.png" 
+                         alt="Bronze Rank" class="rank-img" loading="lazy">
+                    <div>Bronze ★★★★</div>
+                  </div>`;
+            } 
+            else if (points >= 150) {
+                return `
+                  <div style="text-align: center;">
+                    <img src="https://cdn3d.iconscout.com/3d/premium/thumb/rank-bronze-3d-icon-download-in-png-blend-fbx-gltf-file-formats--badge-award-medal-game-pack-entertainment-icons-10163270.png" alt="Silver Rank" class="rank-img" loading="lazy">
+                    <div>Bronze ★★★</div>
+                  </div>`;
+            } 
+            else if (points >= 100) {
+                return `
+                  <div style="text-align: center;">
+                    <img src="https://cdn3d.iconscout.com/3d/premium/thumb/rank-bronze-11492380-9325595.png?f=webp" alt="Silver Rank" class="rank-img">
+                    <div>Bronze ★★</div>
+                  </div>`;
             } 
             else if (points >= 60) {
-                return '<img src="https://cdn3d.iconscout.com/3d/premium/thumb/rank-bronze-3d-icon-download-in-png-blend-fbx-gltf-file-formats--medal-award-winner-prize-pack-sign-symbols-icons-9325592.png" alt="Bronze Rank" class="rank-img"> Bronze';
+                return `
+                  <div style="text-align: center;">
+                    <img src="https://cdn3d.iconscout.com/3d/premium/thumb/rank-bronze-3d-icon-download-in-png-blend-fbx-gltf-file-formats--medal-award-winner-prize-pack-sign-symbols-icons-9325592.png" alt="Bronze Rank" class="rank-img" loading="lazy">
+                    <div>Bronze ★</div>
+                  </div>`;
             } 
+            else if (points >= 30) {
+                return `
+                  <div style="text-align: center;">
+                    <img src="https://cdn3d.iconscout.com/3d/premium/thumb/star-badge-3d-icon-download-in-png-blend-fbx-gltf-file-formats--label-award-medal-badges-pack-sports-games-icons-6670247.png?f=webp" alt="Bronze Rank" class="rank-img" loading="lazy">
+                    <div>Plastic ★★</div>
+                  </div>`;
+            } 
+                
             else {
-                return '<img src="https://cdn3d.iconscout.com/3d/premium/thumb/star-badge-3d-icon-download-in-png-blend-fbx-gltf-file-formats--label-award-medal-badges-pack-sports-games-icons-6670247.png?f=webp" alt="Plastic Rank" class="rank-img"> Plastic';
+                return `
+                  <div style="text-align: center;">
+                    <img src="https://cdn3d.iconscout.com/3d/premium/thumb/badge-3d-icon-download-in-png-blend-fbx-gltf-file-formats--award-medal-winner-badges-pack-sports-games-icons-6670242.png" alt="Plastic Rank" class="rank-img" loading="lazy">
+                    <div>Plastic ★</div>
+                  </div>`;
             }
         }
 
@@ -1122,6 +1179,9 @@
                     crownCell.innerHTML = `<img src="img/20241026_223850.webp" class="crown-symbol crown-silver" alt="silver crown">`;
                 } else if (index === 2) {
                     crownCell.innerHTML = `<img src="img/20241026_223914.webp" class="crown-symbol crown-bronze" alt="bronze crown">`;
+                } else {
+                    
+                   crownCell.innerHTML = `${index + 1}`;
                 }
 
                 const nameCell = document.createElement('td');
@@ -1129,6 +1189,9 @@
 
                 const pointsCell = document.createElement('td');
                 pointsCell.textContent = customer.points;
+
+                
+                pointsCell.innerHTML = `<strong><span style="color: #FFC7C7;">${customer.points}</span></strong>`;
 
                 const rankCell = document.createElement('td');
                 rankCell.innerHTML = getRankSymbol(customer.points);

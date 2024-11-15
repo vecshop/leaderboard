@@ -942,76 +942,11 @@
             animation: float 3s ease-in-out infinite; /* Floating animation */
         }
 
-        /* Style for Guide Card */
-        .guide-card {
-            width: 200px;
-            padding: 15px;
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            font-size: 14px;
-            color: #333;
-            z-index: 1002;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* Dialogue bubble tail */
-        .guide-card::before {
-            content: '';
-            position: absolute;
-            top: 80%; /* Position the tip vertically aligned to the text */
-            left: -15px; /* Position to the left */
-            width: 0;
-            height: 0;
-            border-width: 10px;
-            border-style: solid;
-            border-color: transparent #f9f9f9 transparent transparent; /* Creates the tail pointing to the left */
-        }
-
-        .guide-card p {
-            margin: 0 0 10px 0;
-            text-align: center;
-        }
-
-        .guide-card button {
-            padding: 5px 10px;
-            background-color: #2575fc; /* Button color matching the gradient */
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-size: 12px;
-        }
-
-        /* Responsive adjustments for screens with max width 480px */
-        @media (max-width: 480px) {
-            .guide-card {
-                bottom: 100px; /* Adjust position to be closer to the bottom */
-                right: 20px; /* Reduce the right margin for smaller screens */
-                width: 56%; /* Make the guide card almost full-width for easier reading */
-                padding: 10px; /* Slightly reduce padding */
-                font-size: 12px; /* Decrease font size for readability on small screens */
-            }
-
-            .guide-card button {
-                padding: 5px 8px; /* Adjust button size for mobile screens */
-                font-size: 10px; /* Smaller font size for the button */
-            }
-        }
-
 
     </style>
 </head>
 
 <body>
-    <!-- Guide Card for Vecsai Icon -->
-    <div class="guide-card" id="guideCard">
-        <p>Anda sekarang dapat bertanya pada AI untuk bantuan. Klik ikon bintang di bawah untuk mulai bertanya!</p>
-        <button onclick="closeGuideCard()">OK</button>
-    </div>
-
 
     <!-- Add this HTML right after the <body> tag and before the navbar -->
     <div class="background-animation">
